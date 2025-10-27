@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
-import rohit from "@/public/staffpotrait_rohit_ii.jpg";
-import harpreet from "@/public/staffportrait_hapreet.jpg";
+import rohit from "@/public/staffpotrait_rohit_ii.webp";
+import harpreet from "@/public/staffportrait_hapreet.webp";
 
 export interface TeamMember {
   name: string;

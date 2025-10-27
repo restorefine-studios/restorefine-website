@@ -11,7 +11,7 @@ import { RestoExpectation } from "./resto-services/resto-expectation";
 import money from "@/public/moneystartgraphic.svg";
 import { rBrandingServices } from "@/lib/rbrandingServices";
 import artefacts from "@/public/services/branding/rbrandinghomemobile.svg";
-import globe from "@/public/services/branding/globe.png";
+import globe from "@/public/services/branding/globe.webp";
 import pulse from "@/public/services/branding/iterationschart.svg";
 import avatar from "@/public/services/branding/commsavatar.svg";
 import commstext from "@/public/services/branding/commstext.svg";
@@ -41,11 +41,7 @@ const restoExpectationProps = {
     },
     backgroundColor: "#ae0404",
   },
-  typewriterPhrases: [
-    "Transparent Communication & Collaboration",
-    "Holistic Brand Strategy Implementation",
-    "User Experience Research",
-  ],
+  typewriterPhrases: ["Transparent Communication & Collaboration", "Holistic Brand Strategy Implementation", "User Experience Research"],
   buildingCard: {
     image: globe.src,
     title: "Building",
@@ -62,18 +58,7 @@ const restoExpectationProps = {
     title: "Iterations",
     subtitle: " As many needed to achieve excellence",
   },
-  services: [
-    "Product Design",
-    "Social Media",
-    "Landing Pages",
-    "Logos",
-    "Brand Guidelines",
-    "Icons",
-    "Branding",
-    "Slide Decks",
-    "Visual Identity",
-    "Restaurant Menu Design",
-  ],
+  services: ["Product Design", "Social Media", "Landing Pages", "Logos", "Brand Guidelines", "Icons", "Branding", "Slide Decks", "Visual Identity", "Restaurant Menu Design"],
 };
 
 function RBranding() {
@@ -106,24 +91,10 @@ function RBranding() {
       {/* <Cta /> */}
       <section className="absolute inset-x-0 flex w-full overflow-x-hidden bg-transparent py-0 gap-x-4">
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
-          <Image
-            src={signature}
-            alt="signature"
-            layout="responsive"
-            width={500}
-            height={500}
-            className="w-full"
-          />
+          <Image src={signature} alt="signature" layout="responsive" width={500} height={500} className="w-full" />
         </div>
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
-          <Image
-            src={signature}
-            alt="signature"
-            layout="responsive"
-            width={500}
-            height={500}
-            className="w-full"
-          />
+          <Image src={signature} alt="signature" layout="responsive" width={500} height={500} className="w-full" />
         </div>
       </section>
     </main>
