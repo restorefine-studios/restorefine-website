@@ -2,8 +2,11 @@ import Link from "next/link";
 import bghero from "@/public/bghero.webp";
 import Image from "next/image";
 import orbit from "@/public/orbitbg.svg";
+import { getEntry } from "@/lib/contentful";
 
-export default function Hero() {
+export default async function Hero() {
+  const entry = await getEntry('4vS3xsxhN1eATw3l21K6ek');
+  const heroHeadline = entry?.fields?.heroHeadline || 'Your Partner in Hospitality Success, Beyond Digital';
   return (
     <main className="bg-black flex min-h-screen flex-col items-center justify-center gap-y-1 pt-2 text-center">
       {/* Background Image */}
@@ -42,16 +45,15 @@ export default function Hero() {
         </span>
       </Link>
 
-      {/* Heading */}
-      <h1 className="relative z-0 mb-6 text-center font-medium tracking-tight text-5xl md:text-7xl">
-        <span className="p-1.5 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">
-          Your Partner in
-          <br />
-          Hospitality Success,
-          <br />
-          Beyond Digital
-        </span>
-      </h1>
+       {/* Heading */}
+       <h1 className="relative z-0 mb-6 text-center font-medium tracking-tight text-5xl md:text-7xl">
+         <span className="max-w-3xl p-1.5 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">
+           {heroHeadline}
+         </span>
+
+
+
+       </h1>
       {/* Description */}
       <p className="mx-auto mb-12 max-w-3xl font-normal text-white/80">
         Running a restaurant, café, or takeaway is tough. We make it easier.

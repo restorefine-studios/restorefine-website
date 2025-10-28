@@ -1,5 +1,3 @@
-"use client";
-
 import Resto from "@/blocks/home";
 import { Footer } from "@/components/footer";
 // import Image from "next/image";
