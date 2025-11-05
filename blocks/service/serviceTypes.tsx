@@ -4,97 +4,15 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import pack from "@/public/restorefine_bag+box.jpg";
-import mealimage from "@/public/restomedia-photography.jpg";
-import tshirt from "@/public/restoprint-demo.jpg";
-import phone from "@/public/iPhone15Mockup.jpg";
-import merch from "@/public/restomerch-demo.jpg";
 
-const services = [
-  {
-    title: "RestoWeb",
-    description: "Build a digital space that's truly yours.",
-    image: phone,
-    href: "/services/restoweb",
-  },
-  {
-    title: "RestoPrint",
-    description: "Your vision on paper, with quality you can see and feel.",
-    image: tshirt,
-    href: "/services/restoprint",
-  },
-  {
-    title: "RestoMedia",
-    description: "Frame the taste and savour the experience",
-    image: mealimage,
-    href: "/services/restomedia",
-  },
-  {
-    title: "RestoMerch",
-    description: "Represent you in your style",
-    image: merch,
-    href: "/services/restomerch",
-  },
-  // Add more services as needed
-];
+interface ServiceTypesProps {
+  headline: string;
+  subtext: string;
+  subServices: any[];
+  serviceDetails: any[];
+}
 
-const serviceDetails = [
-  {
-    number: "01",
-    title: "Web Design",
-    description:
-      "We design clean, modern, and highly functional websites that blend aesthetics with usability. Whether you're launching a new product or revamping your digital presence, we ensure every detail is crafted to match your brand's tone, vision, and audience expectations.",
-    services: [
-      "UX/UI Research & Wireframing",
-      "Responsive Web Design",
-      "Conversion-Focused Landing Pages",
-      "Design System Implementation",
-      "Prototyping with Figma",
-    ],
-  },
-  {
-    number: "02",
-    title: "Software Development",
-    description:
-      "From concept to deployment, we build secure, scalable, and high-performing digital products tailored to your business goals. Our solutions cover everything from intuitive frontends to powerful backend systems, ensuring a seamless user experience across all platforms.",
-    services: [
-      "Full-Stack Development",
-      "API Architecture & Integration",
-      "Content Management Systems",
-      "Custom Web Applications",
-      "Performance Optimization",
-    ],
-  },
-  {
-    number: "03",
-    title: "Restaurant Menu",
-    description:
-      "We design and structure menus that not only reflect your restaurant’s unique identity but also guide customer decisions through clear layout and strategic item placement. Our printing solutions ensure consistent quality and durability across all formats.",
-    services: [
-      "Menu Content Structuring",
-      "Visual Layout & Print Design",
-      "Menu Engineering (High-Margin Placement)",
-      "Bulk Printing & Finishing",
-      "Menu Translations & Localization",
-    ],
-  },
-  {
-    number: "04",
-    title: "Brand Identity",
-    description:
-      "Your brand is more than a logo — it's how the world perceives you. We build compelling brand identities that communicate your mission, establish trust, and leave a lasting impression across all customer touchpoints.",
-    services: [
-      "Logo Design & Typography",
-      "Visual Identity Systems",
-      "Brand Strategy & Positioning",
-      "Social Media Design Kits",
-      "Brand Guidelines Documentation",
-    ],
-  },
-];
-
-
-export default function ServiceTypes() {
+export default function ServiceTypes({ headline, subtext, subServices, serviceDetails }: ServiceTypesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -127,6 +45,8 @@ export default function ServiceTypes() {
     setTimeout(() => setIsTransitioning(false), 500); // Match this with the CSS transition duration
   };
 
+  const services = subServices.slice(1); // Use subServices 2-5 for carousel
+
   const visibleServices = isMobile
     ? services
     : [
@@ -140,16 +60,16 @@ export default function ServiceTypes() {
       <div className="">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl sm:text-3xl font-semibold text-white md:text-4xl">
-            Our Services
+            {headline}
           </h1>
           <p className="max-w-[80%] md:max-w-[50%] text-sm sm:text-md md:text-base text-white/80">
-            Shaping Brands with Purpose and Precision
+            {subtext}
           </p>
         </div>
 
         <div className="w-fulll my-6 md:my-12 relative h-[500px] lg:h-[600px] rounded-[24px] overflow-hidden bg-[#d9d9d9]">
           <Image
-            src={pack || "/placeholder.svg"}
+            src={subServices[0]?.image || "/placeholder.svg"}
             alt="Services Hero"
             fill
             className="h-full object-cover flex lg:absolute bottom-0 lg:-bottom-8"
@@ -160,13 +80,11 @@ export default function ServiceTypes() {
       <div className="mb-0">
         <div className="flex flex-col lg:flex-row items-start justify-evenly">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white md:text-4xl">
-            RestoBranding
+            {subServices[0]?.title}
           </h2>
           <div className="space-y-6">
             <p className="max-w-full lg:max-w-[400px] text-sm md:text-base text-white/80">
-              Our branding service dives deep into what makes your business
-              unique, creating a powerful identity that not only stands out but
-              connects with your audience on every level.
+              {subServices[0]?.description}
             </p>
             <Link
               href="/services/restobranding"
@@ -189,7 +107,7 @@ export default function ServiceTypes() {
               : "grid md:grid-cols-2 lg:grid-cols-3"
           } gap-4`}
         >
-          {visibleServices.map((service, index) => (
+          {visibleServices.map((service: any, index: number) => (
             <Link
               key={`${service.title}-${index}`}
               href={service.href}
@@ -240,8 +158,8 @@ export default function ServiceTypes() {
         )}
       </section>
 
-      <div className="space-y-16">
-        {serviceDetails.map((service, index) => (
+       <div className="space-y-16">
+        {serviceDetails.map((service: any, index: number) => (
           <div key={service.number} className="relative">
             <div className="grid md:grid-cols-[100px_1fr] gap-4">
               <div className="text-4xl font-semibold text-[red]">
@@ -253,7 +171,7 @@ export default function ServiceTypes() {
                 </h3>
                 <p className="text-sm text-white/80">{service.description}</p>
                 <div className="flex flex-wrap gap-4">
-                  {service.services.map((item) => (
+                  {service.services.map((item: string) => (
                     <button
                       key={item}
                       className="px-6 py-3 text-white text-xs border border-white/30 rounded-full hover:bg-white/10 transition-colors"

@@ -4,29 +4,22 @@ import { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-const reviews = [
-  {
-    id: 1,
-    name: "Raj",
-    position: "Himalayan Dine In",
-    review:
-      "The print quality was amazing, and I couldn't believe how affordable it was compared to my last supplier. Great service and fast delivery!",
-    image: "/reviewuser.svg",
-    companyLogo: "/himalayanlogo.svg",
-  },
-  {
-    id: 2,
-    name: "Balraj",
-    position: "Favourite Spot",
-    review:
-      "RestoRefine Studios gave our café a fresh look with a great logo redesign and incredible food photos. The photos really improved our social media presence, which has helped bring in more customers. Highly recommend them for creative and professional work in Glasgow!",
-    image: "/reviewuser.svg",
-    companyLogo: "/favouritespot_logo.png",
-  },
-  // Add more reviews as needed
-];
+interface Review {
+  id: number;
+  name: string;
+  position: string;
+  review: string;
+  image: string;
+  companyLogo: string;
+}
 
-export function Reviews() {
+interface ReviewsProps {
+  reviews: Review[];
+  headline: string;
+  subtext: string;
+}
+
+export function Reviews({ reviews, headline, subtext }: ReviewsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -70,11 +63,10 @@ export function Reviews() {
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white md:text-4xl">
-            Our Clients
+            {headline}
           </h2>
           <p className="max-w-[80%] md:max-w-[50%] text-sm sm:text-md md:text-base text-white/80">
-            Hear firsthand how our solutions have boosted online success for
-            users like you.
+            {subtext}
           </p>
         </div>
 

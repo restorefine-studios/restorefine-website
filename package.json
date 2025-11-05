@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.1.6",
+    "@contentful/rich-text-types": "^17.2.5",
     "@heroicons/react": "^2.2.0",
     "@next/third-parties": "^15.3.2",
     "@radix-ui/react-accordion": "^1.2.2",

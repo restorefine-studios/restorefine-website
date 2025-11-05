@@ -2,35 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const strategies = [
-  {
-    title: "Reach Out",
-    description:
-      "We start by listening to you to understand your goals and what you're aiming to achieve. This ensures we are aligned from the very begining, no matter what your project might be",
-  },
-  {
-    title: "Evaluate",
-    description:
-      "Next we access your current situation or initial ideas. We identify what you need to succeed, whether its starting something new or improving something existing.",
-  },
-  {
-    title: "Strategize",
-    description:
-      "With a clear understading of your needs, we craft a tailored plan designed specifically to address your unique challenges. This strategy sets the path for effective action.",
-  },
-  {
-    title: "Transform",
-    description:
-      "We put our plan into action, focusing on making the necessary changes to achieve your goals. This phase is all about bringing your vision to life with precision and care.",
-  },
-  {
-    title: "Optimize",
-    description:
-      "After implementation we don't just walk away, we continue to refine and adjust our approach based on feedback and results, ensuring that you receive ongoing benefits and support.",
-  },
-]
+interface StrategySectionProps {
+  strategyHeadline: string;
+  strategySubtext: string;
+  strategies: any[];
+}
 
-export function StrategySection() {
+export function StrategySection({ strategyHeadline, strategySubtext, strategies }: StrategySectionProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -66,15 +44,15 @@ export function StrategySection() {
     <section ref={sectionRef} className="py-16 bg-[#000000] min-h-screen flex items-center">
       <div className="container mx-auto">
         <div className="mx-auto mb-16">
-          <h2 className="text-2xl font-medium text-white md:text-2xl lg:text-3xl">Our Strategy For Work</h2>
-          <p className="text-white/80">Our service is simple as <span className="italic font-medium" >RESTO</span></p>
+          <h2 className="text-2xl font-medium text-white md:text-2xl lg:text-3xl">{strategyHeadline}</h2>
+          <p className="text-white/80">{strategySubtext}</p>
         </div>
 
         <div className="relative max-w-md mx-auto">
           {/* Vertical line */}
           <div className="absolute left-6 top-6 bottom-6 w-px bg-white/20"></div>
 
-          {strategies.map((strategy, index) => (
+          {strategies.map((strategy: any, index: number) => (
             <div
               key={index}
               ref={(el) => { itemRefs.current[index] = el }}

@@ -132,19 +132,19 @@ export function RestoExpectation({
                 height={80}
                 className="rounded-full w-16 h-16 sm:w-20 sm:h-20"
               />
-              <div className="text-[#ffffff]">
-                <h3 className="text-xl sm:text-2xl font-semibold">
-                  {buildingCard.title}
-                </h3>
-                <span className="flex items-center gap-x-1">
-                  <h3 className="text-xl sm:text-2xl font-semibold text-[#ffffff]/70">
-                    For
-                  </h3>
-                  <h3 className="text-xl sm:text-2xl font-semibold">
-                    {buildingCard.subtitle}
-                  </h3>
-                </span>
-              </div>
+               <div className="text-[#ffffff]">
+                 <h3 className="text-xl sm:text-2xl font-semibold">
+                   {buildingCard.title}
+                 </h3>
+                 <span className="flex items-center gap-x-1">
+                   <h3 className="text-xl sm:text-2xl font-semibold text-[#ffffff]/70">
+                     for
+                   </h3>
+                   <h3 className="text-xl sm:text-2xl font-semibold">
+                     {buildingCard.subtitle}
+                   </h3>
+                 </span>
+               </div>
             </div>
           </section>
 

@@ -1,10 +1,21 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import apps from "@/public/serviceapps.svg";
-import tray from "@/public/restotray.svg";
 
-export function CreativePotential() {
+interface PotentialImage {
+  src: string;
+  alt: string;
+  title: string;
+  subtitle: string;
+}
+
+interface CreativePotentialProps {
+  headline: string;
+  subtext: string;
+  images: PotentialImage[];
+}
+
+export function CreativePotential({ headline, subtext, images }: CreativePotentialProps) {
   return (
     <section className="pt-32 md:pt-44">
       <div className="">
@@ -12,14 +23,11 @@ export function CreativePotential() {
           {/* Text Content */}
           <div className="col-span-1 space-y-4">
             <h2 className="text-2xl sm:text-3xl font-semibold text-white md:text-4xl">
-              Harness Our Full
-              <br className="hidden md:inline" /> Creative Potential
+              {headline}
             </h2>
 
             <p className="text-sm sm:text-md md:text-base text-white/80">
-              Harness our full creative power to transform your vision into
-              reality. We craft impactful solutions that elevate your brand and
-              leave a lasting impression.
+              {subtext}
             </p>
 
             {/* Custom See More Button */}
@@ -36,41 +44,26 @@ export function CreativePotential() {
 
           {/* Empty Shapes */}
           <div className="col-span-1 lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:mt-0">
-            <div className="responsive-height rounded-[24px] bg-[#131313] relative overflow-hidden">
-              <div className="absolute top-7 left-7 space-y-2">
-                <p className="text-md md:text-xs font-medium text-white/50">
-                  Build
-                </p>
-                <h2 className="max-w-[70%] text-lg md:text-md font-medium block text-white/80">
-                  All your digital needs in-one-house
-                </h2>
-              </div>
+            {images.map((img, index) => (
+              <div key={index} className="responsive-height rounded-[24px] bg-[#131313] relative overflow-hidden">
+                <div className="absolute top-7 left-7 space-y-2">
+                  <p className="text-md md:text-xs font-medium text-white/50">
+                    {img.title}
+                  </p>
+                  <h2 className="max-w-[70%] text-lg md:text-md font-medium block text-white/80">
+                    {img.subtitle}
+                  </h2>
+                </div>
 
-              <Image
-                src={apps || "/placeholder.svg"}
-                alt="restorefine-service-apps"
-                width={200}
-                height={200}
-                className="w-full absolute bottom-0 grayscale-none md:grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
-              />
-            </div>
-            <div className="responsive-height  rounded-[24px] bg-[#131313] relative overflow-hidden">
-              <div className="absolute top-7 left-7 space-y-2">
-                <p className="text-md md:text-xs font-medium text-white/50">
-                  Reach
-                </p>
-                <h2 className="max-w-[70%] text-lg md:text-md font-medium block text-white/80">
-                  Serve your restaurant to a global audience
-                </h2>
+                <Image
+                  src={img.src || "/placeholder.svg"}
+                  alt={img.alt}
+                  width={200}
+                  height={200}
+                  className="w-full absolute bottom-0 grayscale-none md:grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                />
               </div>
-              <Image
-                src={tray || "/placeholder.svg"}
-                alt="restorefine-servingtray-graphic"
-                width={200}
-                height={200}
-                className="w-full absolute bottom-0 grayscale-none md:grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
-              />
-            </div>
+            ))}
           </div>
         </div>
 
