@@ -131,7 +131,7 @@ export default async function BlogPage() {
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
                       <span className="mx-2">•</span>
-                      <span>{post.date}</span>
+                      <span>{post.date ? new Date(post.date)?.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</span>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default async function BlogPage() {
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
                       <span className="mx-2">•</span>
-                      <span>{post.date}</span>
+                      <span>{post.date ? new Date(post.date)?.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</span>
                     </div>
                   </div>
                 </div>
