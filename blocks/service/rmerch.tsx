@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import RestoBenefits from "./resto-services/resto-benefits";
 // import Cta from "@/components/cta";
 import hood from "@/public/merchsignature.svg";
-import signature from "@/public/restomerchsignature.svg";
+
 import headlineimg from "@/public/services/merch/pexels-oyindamola-taiwo-346083207-18930893.jpg";
 import stationery from "@/public/services/merch/restorefine_floatingpens.jpg";
 import apron from "@/public/services/merch/HOM-000-024-M-Freebie.jpg";
@@ -21,78 +21,15 @@ const star = <Image src={restostar} alt="RestoStar" width={100} height={100} />;
 const merchring = <Image src={ring} alt="MerchRing" width={150} height={150} />;
 const triangle = <Image src={tri} alt="MerchAngle" width={50} height={50} />;
 
-const aboutRMerch = [
-  {
-    title: "Personalised Stationery",
-    description:
-      "Supply custom-designed pens, notepads, and business cards that keep your brand in customers' minds.",
-  },
-  {
-    title: "Custom Clothing and Apparel",
-    description:
-      "Create uniquely branded uniforms, t-shirts, and aprons that your staff will wear with pride.",
-  },
-  {
-    title: "Promotional Items",
-    description:
-      "Develop keychains, mugs, and other promotional items that make great giveaways and keep your brand visible.",
-  },
-];
+
 
 // const services = ["Apparel Print", "Stationery Print", "Branding", "Design"];
 
-const benefitsContent = {
-  title: "And We Make It\nEasier For You",
-  subtitle: "Simplifying the complex, so you can focus on what matters.",
-  signature: hood.src,
-  makeRequest: {
-    title: "Make Your Request",
-    image: "/services/merch/restomerchreq.svg",
-  },
-  receiveRefine: {
-    title: "Receive and Refine",
-    image: "/services/merch/restomerchmedal.svg",
-  },
-};
 
-const restoExpectationProps = {
-  title: "And These Inspiring Benefits Await You",
-  subtitle: " To turn your ideas into impactful solutions",
-  partnerCard: {
-    title: "Your Brand merchandise",
-    gradient: { from: "#3FCBFE", to: "#1B496F" },
-    backgroundColor: "#99E2FF",
-  },
-  typewriterPhrases: [
-    "High Quality Branded Assets",
-    "Align With Your Restaurant's Customers",
-    "Attract Attention To Your Business",
-  ],
-  buildingCard: {
-    image: "",
-    title: "",
-    subtitle: "",
-  },
-  supportCard: {
-    avatar: "",
-    textImage: "",
-    title: "",
-    subtitle: "",
-  },
-  iterationsCard: {
-    image: "",
-    title: "",
-    subtitle: "",
-  },
-  services: [
-    "Business Cards",
-    "Brand Stationery",
-    "Branded Uniforms",
-    "Apparel",
-  ],
-};
 
-function RMerch() {
+
+
+function RMerch({ data }: { data: any }) {
   return (
     <main className="py-44">
       <section className="relative z-10 flex flex-col items-center justify-center text-center gap-y-4">
@@ -119,9 +56,7 @@ function RMerch() {
         <div className="">
           <div className="mb-8 flex flex-col lg:flex-row items-center justify-between gap-4">
             <p className="text-md w-[350px] text-white leading-relaxed">
-              Enhance your branding with RestoMerch’s personalized products.
-              From stationery to clothing, we provide custom merchandise
-              solutions that help promote and amplify your brand visibility.
+              {data.hero.description}
             </p>
 
             <div className="relative flex items-center justify-center">
@@ -191,7 +126,7 @@ function RMerch() {
 
       <section className="py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {aboutRMerch.map((item, index) => (
+          {data.services.features.slice(0,3).map((item: any, index: number) => (
             <div
               key={index}
               className="flex flex-col lg:flex-row items-start lg:items-center gap-6"
@@ -200,11 +135,11 @@ function RMerch() {
                 <h2 className="text-2xl font-medium text-white mb-1">
                   {item.title}
                 </h2>
-                <p className="text-sm text-white/80 leading-relaxed">
-                  {item.description}
-                </p>
+                 <p className="text-sm text-white/80 leading-relaxed">
+                   {item.description}
+                 </p>
               </div>
-              {index !== aboutRMerch.length - 1 && (
+              {index !== data.services.features.slice(0,3).length - 1 && (
                 <div className=" w-full lg:w-px h-px lg:h-full bg-white/30"></div>
               )}
             </div>
@@ -213,15 +148,40 @@ function RMerch() {
       </section>
 
       {/* <RestoOverview /> */}
-      <RestoBenefits {...benefitsContent} />
-      <RestoExpectation {...restoExpectationProps} />
+      <RestoBenefits
+        title={data.benefits.title}
+        subtitle={data.benefits.subtitle}
+        signature={data.starIcon}
+        makeRequest={{
+          title: "Make Your Request",
+          image: "/services/merch/restomerchreq.svg",
+        }}
+        receiveRefine={{
+          title: "Receive and Refine",
+          image: "/services/merch/restomerchmedal.svg",
+        }}
+      />
+      <RestoExpectation
+        title={data.expectation.title}
+        subtitle={data.expectation.subtitle}
+        partnerCard={{
+          title: "Your Brand merchandise",
+          gradient: { from: "#3FCBFE", to: "#1B496F" },
+          backgroundColor: "#99E2FF",
+        }}
+        typewriterPhrases={data.expectation.typewriterPhrases}
+        buildingCard={data.expectation.buildingCard}
+        supportCard={data.expectation.supportCard}
+        iterationsCard={data.expectation.iterationsCard}
+        services={data.expectation.services}
+      />
 
       {/* <Cta /> */}
 
       <section className="absolute inset-x-0 flex w-full overflow-x-hidden bg-transparent py-0 gap-x-4">
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
           <Image
-            src={signature}
+            src={data.signature}
             alt="signature"
             layout="responsive"
             width={500}
@@ -231,7 +191,7 @@ function RMerch() {
         </div>
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
           <Image
-            src={signature}
+            src={data.signature}
             alt="signature"
             layout="responsive"
             width={500}

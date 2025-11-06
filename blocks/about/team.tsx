@@ -5,14 +5,27 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Modal } from "@/components/modal";
-import { teamMembers, type TeamMember } from "@/lib/profile";
+import { type TeamMember } from "@/lib/profile";
 
-export function Team() {
+interface Founder {
+  name: string;
+  role: string;
+  about: string;
+  image: string;
+}
+
+interface TeamProps {
+  headline: string;
+  subtext: string;
+  founders: Founder[];
+}
+
+export function Team({ headline, subtext, founders }: TeamProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   const nextSlide = () => {
-    if (currentIndex + 3 < teamMembers.length) {
+    if (currentIndex + 3 < founders.length) {
       setCurrentIndex((prev) => prev + 1);
     }
   };
@@ -28,15 +41,10 @@ export function Team() {
       <div className="">
         <div className="mx-auto mb-8">
           <h2 className="text-2xl font-medium text-white md:text-2xl lg:text-3xl">
-            The Founders
+            {headline}
           </h2>
           <p className="text-sm text-white/80">
-            Meet the creative minds behind RestoRefine Studios.
-            <br />{" "}
-            <span className="text-white/50">
-              {" "}
-              Click on image to view profile{" "}
-            </span>
+            {subtext}
           </p>
         </div>
 
@@ -48,7 +56,7 @@ export function Team() {
               animate={{ x: `${-currentIndex * (100 / 3)}%` }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              {teamMembers.map((member, index) => (
+              {founders.map((member: any, index: number) => (
                 <motion.div
                   key={index}
                   className="flex-none w-full md:w-[calc(33.333%-1.333rem)]"
@@ -59,7 +67,13 @@ export function Team() {
                 >
                   <div
                     className="aspect-square rounded-[24px] relative mb-3"
-                    onClick={() => setSelectedMember(member)}
+                    onClick={() => setSelectedMember({
+                      name: member.name,
+                      position: member.role,
+                      image: member.image as any,
+                      profile: '',
+                      bio: member.about.replace(/<br><br>/g, '\n\n')
+                    })}
                   >
                     <Image
                       src={member.image || "/placeholder.svg"}
@@ -73,14 +87,10 @@ export function Team() {
                       <h3 className="text-lg font-semibold text-white">
                         {member.name}
                       </h3>
-                      <p className="text-sm text-white/70">{member.position}</p>
+                      <p className="text-sm text-white/70">{member.role}</p>
                     </div>
 
-                    <Link href={member.profile} target="_blank">
-                      <span className="w-7 text-white/30 hover:text-white duration-500 ease-in-out cursor-pointer text-3xl font-extrabold">
-                        in
-                      </span>
-                    </Link>
+                    {/* Omit linkedin for now */}
                   </div>
                 </motion.div>
               ))}

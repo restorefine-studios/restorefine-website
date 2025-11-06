@@ -4,51 +4,16 @@ import Image from "next/image";
 import moneyeye from "@/public/rmediahero.svg";
 import ctabg from "@/public/rmediactabg.jpg";
 import { RestoOverview } from "./resto-services/resto-overview";
-import { rMediaServices } from "@/lib/rmediaServices";
-import signature from "@/public/restomediasignature.svg";
+
+
 import bio from "@/public/services/media/restomediabio.jpg";
 import { RestoExpectation } from "./resto-services/resto-expectation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const restoExpectationProps = {
-  title: "And These Inspiring Benefits Await You",
-  subtitle: " To turn your ideas into impactful solutions",
-  partnerCard: {
-    title: "Showcase your Business",
-    gradient: { from: "#FFE0A7", to: "#483920" },
-    backgroundColor: "#C9A585",
-  },
-  typewriterPhrases: [
-    "Enhance Interaction & Attract New Customers",
-    "Compelling Video Compositions",
-    "Strategy That Speaks Directly To Your Audience",
-  ],
-  buildingCard: {
-    image: "",
-    title: "",
-    subtitle: "",
-  },
-  supportCard: {
-    avatar: "",
-    textImage: "",
-    title: "",
-    subtitle: "",
-  },
-  iterationsCard: {
-    image: "",
-    title: "",
-    subtitle: "",
-  },
-  services: [
-    "Photography",
-    "Videography",
-    "Content Creation",
-    "Social Media Strategy",
-  ],
-};
 
-function RMedia() {
+
+function RMedia({ data }: { data: any }) {
   return (
     <main className="">
       
@@ -133,7 +98,7 @@ function RMedia() {
         </div>
       </section>
 
-      <RestoOverview {...rMediaServices} />
+      <RestoOverview {...data.overview} />
 
       <section className="py-12">
         <div className="flex w-full inset-x-0 overflow-x-hidden">
@@ -149,12 +114,25 @@ function RMedia() {
         </div>
       </section>
 
-      <RestoExpectation {...restoExpectationProps} />
+      <RestoExpectation
+        title={data.expectation.title}
+        subtitle={data.expectation.subtitle}
+        partnerCard={{
+          title: "Showcase your Business",
+          gradient: { from: "#FFE0A7", to: "#483920" },
+          backgroundColor: "#C9A585",
+        }}
+        typewriterPhrases={data.expectation.typewriterPhrases}
+        buildingCard={data.expectation.buildingCard}
+        supportCard={data.expectation.supportCard}
+        iterationsCard={data.expectation.iterationsCard}
+        services={data.expectation.services}
+      />
 
       <section className="absolute inset-x-0 flex w-full overflow-x-hidden bg-transparent py-0 gap-x-4">
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
           <Image
-            src={signature}
+            src={data.signature}
             alt="signature"
             layout="responsive"
             width={500}
@@ -164,7 +142,7 @@ function RMedia() {
         </div>
         <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
           <Image
-            src={signature}
+            src={data.signature}
             alt="signature"
             layout="responsive"
             width={500}

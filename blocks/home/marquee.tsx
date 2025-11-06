@@ -1,35 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import quiknest from "@/public/quiknest.svg";
-import masala from "@/public/masala.svg";
-import fresh from "@/public/freshvibe.svg";
-import spot from "@/public/favoritespot.svg";
 
-const logos = [
-  {
-    name: "QUIKNEST",
-    url: quiknest,
-    filter: "",
-  },
-  {
-    name: "masala moves",
-    url: masala,
-    filter: "",
-  },
-  {
-    name: "freshvibe",
-    url: fresh,
-    filter: "",
-  },
-  {
-    name: "FAVOURITE SPOT",
-    url: spot,
-    filter: "",
-  },
-];
+interface Logo {
+  name: string;
+  url: string;
+  filter?: string;
+}
 
-export function LogoMarquee() {
+interface LogoMarqueeProps {
+  logos: Logo[];
+}
+
+export function LogoMarquee({ logos }: LogoMarqueeProps) {
   return (
     <main className="pb-24 w-full">
       <div className="pb-12 md:pb-16 relative">
@@ -43,7 +26,7 @@ export function LogoMarquee() {
         ></div>
         <div
           aria-hidden="true"
-          className="-top-1 left-1/2 h-[200px] w-full max-w-[200px] md:max-w-[400px] center pointer-events-none absolute max-w-full -translate-x-1/2 -translate-y-1/2"
+          className="-top-1 left-1/2 h-[200px] w-full md:max-w-[400px] center pointer-events-none absolute max-w-full -translate-x-1/2 -translate-y-1/2"
           style={{
             background:
               "conic-gradient(from 90deg, rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 50%), radial-gradient(rgba(200, 200, 200, 0.1) 0%, transparent 80%)",

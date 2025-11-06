@@ -4,77 +4,27 @@ import baloon from "@/public/rbrandingherobaloon.svg";
 import Image from "next/image";
 import RestoServicesHero from "./resto-services/resto-hero";
 import { RestoOverview } from "./resto-services/resto-overview";
-import signature from "@/public/restoprintsignature.svg";
+
 import RestoBenefits from "./resto-services/resto-benefits";
 import { RestoExpectation } from "./resto-services/resto-expectation";
 import money from "@/public/moneystartgraphic.svg";
 import printsketch from "@/public/printherobg.svg";
-import { rPrintServices } from "@/lib/rprintServices";
+
 import globe from "@/public/services/branding/globe.png";
 import pulse from "@/public/services/branding/iterationschart.svg";
 import avatar from "@/public/services/branding/commsavatar.svg";
 import commstext from "@/public/services/branding/commstext.svg";
-const restoExpectationProps = {
-  title: "And These Inspiring Benefits Await You",
-  subtitle: " To turn your ideas into impactful solutions",
-  partnerCard: {
-    title: "Print with Execellence",
-    gradient: {
-      from: "#ff0000",
-      to: "#a90909",
-    },
-    backgroundColor: "#ae0404",
-  },
-  typewriterPhrases: [
-    "Eye-Catching Promotional Materials",
-    "Align With Your Restaurants Ambience",
-    "Attract Attention To Your Business",
-  ],
-  buildingCard: {
-    image: globe.src,
-    title: "Building",
-    subtitle: "Future",
-  },
-  supportCard: {
-    avatar: avatar.src,
-    textImage: commstext.src,
-    title: "Reliable 24h Support",
-    subtitle: "This means just as much to us, reach us anytime",
-  },
-  iterationsCard: {
-    image: pulse.src,
-    title: "Iterations",
-    subtitle: " As many needed to achieve excellence",
-  },
-  services: [
-    "Restaurant Menu",
-    "Signage",
-    "Restaurant Stationery Print",
-    "Apparel Printing",
-  ],
-};
 
-const benefitsContent = {
-  title: "And We Make It\nEasier For You",
-  subtitle: "Simplifying the complex, so you can focus on what matters.",
-  signature: money.src,
-  makeRequest: {
-    title: "Make Your Request",
-    image: "/services/print/restoprintreq.svg",
-  },
-  receiveRefine: {
-    title: "Receive and Refine",
-    image: "/services/print/restoprintmedal.svg",
-  },
-};
 
-function RPrint() {
+
+
+function RPrint({ data }: { data: any }) {
   return (
     <main className="">
       <RestoServicesHero
-        titletop="Creating Long-Lasting"
-        titlebottom="Print Impressions"
-        description="Expert guidance and execution on all your printing needs. From menus to promotional materials, we ensure high-quality print outputs that truly represent your brand’s excellence. "
+        titletop={data.hero.titletop}
+        titlebottom={data.hero.titlebottom}
+        description={data.hero.description}
       />
 
       <div className="absolute z-0 left-0 right-0 top-10 lg:top-28 min-w-full mx-auto min-h-screen flex flex-col items-center justify-center">
@@ -86,14 +36,39 @@ function RPrint() {
         />
       </div>
       <section className="pt-16 lg:pt-32">
-        <RestoOverview {...rPrintServices} />
-        <RestoBenefits {...benefitsContent} />
-        <RestoExpectation {...restoExpectationProps} />
+        <RestoOverview {...data.overview} />
+        <RestoBenefits
+          title={data.benefits.title}
+          subtitle={data.benefits.subtitle}
+          signature={data.starIcon}
+          makeRequest={{
+            title: "Make Your Request",
+            image: "/services/print/restoprintreq.svg",
+          }}
+          receiveRefine={{
+            title: "Receive and Refine",
+            image: "/services/print/restoprintmedal.svg",
+          }}
+        />
+        <RestoExpectation
+          title={data.expectation.title}
+          subtitle={data.expectation.subtitle}
+          partnerCard={{
+            title: "Print with Excellence",
+            gradient: { from: "#ff0000", to: "#a90909" },
+            backgroundColor: "#ae0404",
+          }}
+          typewriterPhrases={data.expectation.typewriterPhrases}
+          buildingCard={data.expectation.buildingCard}
+          supportCard={data.expectation.supportCard}
+          iterationsCard={data.expectation.iterationsCard}
+          services={data.expectation.services}
+        />
 
         <section className="absolute inset-x-0 flex w-full overflow-x-hidden bg-transparent py-0 gap-x-4">
           <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
             <Image
-              src={signature}
+              src={data.signature}
               alt="signature"
               layout="responsive"
               width={500}
@@ -103,7 +78,7 @@ function RPrint() {
           </div>
           <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
             <Image
-              src={signature}
+              src={data.signature}
               alt="signature"
               layout="responsive"
               width={500}

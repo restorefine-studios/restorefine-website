@@ -1,33 +1,88 @@
-"use client"
-
 import Link from "next/link"
 import Image from "next/image"
 import { blogPosts } from "@/lib/blogContent"
+import { getEntry } from "@/lib/contentful"
 
-export default function BlogPage() {
+function extractPlainText(document: any): string {
+  if (!document || !document.content) return '';
+  return document.content
+    .map((node: any) => {
+      if (node.nodeType === 'text') {
+        return node.value;
+      } else if (node.nodeType === 'paragraph' && node.content) {
+        return node.content.map((child: any) => child.value || '').join('');
+      }
+      return '';
+    })
+    .join(' ')
+    .trim();
+}
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  authorImage: string;
+  thumbnail: string;
+  date: string;
+}
+
+async function fetchData() {
+  const heroEntry = await getEntry('5njp7CckJ3zMmCpyQ5N8Og');
+  const heroHeadline = heroEntry?.fields?.heroHeadline || 'The First Word In What\'s Next';
+  const heroSubtext = heroEntry?.fields?.heroSubtext || 'Like the quiet before a thunderclap — this is where sparks fly for bold brands, standout stories, and digital experiences worth remembering. From kitchens to code, it\'s all on the table.';
+  const heroImage = heroEntry?.fields?.heroImage ? 'https:' + heroEntry.fields.heroImage.fields.file.url : '/resourcesbg.png';
+
+  const blogIds = ['1GbQtiZFH0JMacfoA0lykv', '30ejQTBPwJeuMBmpd30dWk'];
+  const blogEntries = await Promise.all(blogIds.map(id => getEntry(id)));
+  const fetchedPosts: BlogPost[] = blogEntries.map((entry, index) => {
+        const title = entry?.fields?.title || 'Blog Title';
+        const author = entry?.fields?.authorName || 'Author';
+        const authorImage = entry?.fields?.authorImage ? 'https:' + entry.fields.authorImage.fields.file.url : '/placeholder.svg';
+        const thumbnail = entry?.fields?.blogThumbnail ? 'https:' + entry.fields.blogThumbnail.fields.file.url : '/placeholder.svg';
+        const date = entry?.fields?.blogDate || 'Date';
+        const slug = blogIds[index];
+
+        const blogContent = entry?.fields?.blogContent;
+        const excerpt = blogContent ? extractPlainText(blogContent).substring(0, 150) + '...' : '';
+
+        return {
+          slug,
+          title,
+          excerpt,
+          author,
+          authorImage,
+          thumbnail,
+          date
+        };
+  });
+
+  return { heroHeadline, heroSubtext, heroImage, posts: fetchedPosts };
+}
+
+export default async function BlogPage() {
+  const { heroHeadline, heroSubtext, heroImage, posts } = await fetchData();
   // Featured posts (first 2)
-  const featuredPosts = blogPosts.slice(0, 2)
+  const featuredPosts = posts.slice(0, 2)
   // Regular posts (rest)
-  const regularPosts = blogPosts.slice(2)
+  const regularPosts = posts.slice(2)
 
   return (
     <main className="">
       {/* Hero Section */}
       <section className="relative h-[600px] top-0 z-0">
         <div className="">
-          <Image src="/resourcesbg.png" alt="Background pattern" fill className="object-cover opacity-50" priority />
+          <Image src={heroImage} alt="Background pattern" fill className="object-cover opacity-50" priority />
         </div>
         <div className="relative z-10 container h-full flex flex-col items-start justify-center my-auto mx-auto ">
-           <h1 className="relative z-0 text-left font-medium tracking-tight rservicehero text-4xl md:text-7xl">
+           <h1 className="w-full md:max-w-lg relative z-0 text-left font-medium tracking-tight rservicehero text-4xl md:text-7xl">
           <span className="p-1 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent tracking-tight">
-            The First Word
-            <br />
-            In What&apos;s Next
+            {heroHeadline}
           </span>
         </h1>
           <p className="text-white/90 max-w-2xl mt-6">
-            Like the quiet before a thunderclap — this is where sparks fly for bold brands, standout stories, and
-            digital experiences worth remembering. From kitchens to code, it&apos;s all on the table.
+            {heroSubtext}
           </p>
         </div>
       </section>
@@ -35,25 +90,15 @@ export default function BlogPage() {
       {/* Navigation Tabs */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-4">
-          <Link href="/resources" className="text-black font-medium px-6 py-2 rounded-full bg-white">
+          <div className="text-black font-medium px-6 py-2 rounded-full bg-white">
             Blog
-          </Link>
-          <Link
-            href="/reviews"
-            onClick={(e : React.MouseEvent<HTMLAnchorElement> ) => e.preventDefault()}
-            aria-disabled="true"
-            className="cursor-not-allowed text-[#999999] font-medium px-6 py-2 rounded-full bg-[#292929] hover:bg-white hover:text-black transition-colors"
-          >
+          </div>
+          <div className="text-[#999999] font-medium px-6 py-2 rounded-full bg-[#292929]">
             Reviews
-          </Link>
-          <Link
-            href="/events"
-            onClick={(e : React.MouseEvent<HTMLAnchorElement> ) => e.preventDefault()}
-            aria-disabled="true"
-            className="cursor-not-allowed text-[#999999] font-medium px-6 py-2 rounded-full bg-[#292929] hover:bg-white hover:text-black transition-colors"
-          >
+          </div>
+          <div className="text-[#999999] font-medium px-6 py-2 rounded-full bg-[#292929]">
             Events
-          </Link>
+          </div>
         </div>
       </div>
 
@@ -86,7 +131,7 @@ export default function BlogPage() {
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
                       <span className="mx-2">•</span>
-                      <span>{post.date}</span>
+                      <span>{post.date ? new Date(post.date)?.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</span>
                     </div>
                   </div>
                 </div>
@@ -125,7 +170,7 @@ export default function BlogPage() {
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
                       <span className="mx-2">•</span>
-                      <span>{post.date}</span>
+                      <span>{post.date ? new Date(post.date)?.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : ''}</span>
                     </div>
                   </div>
                 </div>
