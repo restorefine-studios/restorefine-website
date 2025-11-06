@@ -30,7 +30,7 @@ interface BlogPost {
 
 async function fetchData() {
   const heroEntry = await getEntry('5njp7CckJ3zMmCpyQ5N8Og');
-  const heroHeadline = heroEntry?.fields?.heroHeadline || 'The First Word In What\'s Next';
+  const heroHeadline = heroEntry?.fields?.heroHeadline || 'The First Word \n\nIn What\'s Next';
   const heroSubtext = heroEntry?.fields?.heroSubtext || 'Like the quiet before a thunderclap — this is where sparks fly for bold brands, standout stories, and digital experiences worth remembering. From kitchens to code, it\'s all on the table.';
   const heroImage = heroEntry?.fields?.heroImage ? 'https:' + heroEntry.fields.heroImage.fields.file.url : '/resourcesbg.png';
 

@@ -48,7 +48,7 @@ function RBranding({ data }: { data: any }) {
       <RestoBenefits
         title={data.benefits.title}
         subtitle={data.benefits.subtitle}
-        signature={data.signature}
+        signature={data.starIcon}
         makeRequest={{
           title: "Make Your Request",
           image: "/services/branding/makereqsgraphic.svg",

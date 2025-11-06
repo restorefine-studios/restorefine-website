@@ -2,6 +2,7 @@ import RPrint from "@/blocks/service/rprint";
 import { getEntry } from "@/lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
+import Image from "next/image";
 
 async function fetchPrintData() {
   const entry = await getEntry('2g9gD2v5cWqzoJgVAYm9gB');
@@ -26,16 +27,16 @@ async function fetchPrintData() {
     }
   }
 
-  const mainGoalHeadline = entry.fields?.mainGoalHeadline || 'And These Inspiring Benefits Await You';
-  const mainGoalSubtext = entry.fields?.mainGoalSubtext || 'To turn your ideas into impactful solutions';
-  const mainGoalSideImage = entry.fields?.mainGoalSideImage ? entry.fields.mainGoalSideImage.map((img: any) => 'https:' + img.fields.file.url) : [];
+  const mainGoalHeadline = entry.fields?.mainBenefitHeadline  || 'And These Inspiring Benefits Await You';
+  const mainGoalSubtext = entry.fields?.mainBenefitSubtext || 'To turn your ideas into impactful solutions';
+  const mainGoalSideImage = entry.fields?.mainGoalSideImages ? entry.fields.mainGoalSideImages.map((img: any) => 'https:' + img.fields.file.url) : [];
 
-  const mainBenefitHeadline = entry.fields?.mainBenefitHeadline || 'And We Make It Easier For You';
-  const mainBenefitSubtext = entry.fields?.mainBenefitSubtext || 'Simplifying the complex, so you can focus on what matters.';
+  const mainBenefitHeadline = entry.fields?.mainGoalHeadline || 'And We Make It Easier For You';
+  const mainBenefitSubtext = entry.fields?.mainGoalSubtext   || 'Simplifying the complex, so you can focus on what matters.';
   const benefitBlock1 = entry.fields?.benefitBlock1 ? documentToReactComponents(entry.fields.benefitBlock1, {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) => (
-        <img src={'https:' + node.data.target.fields.file.url} alt={node.data.target.fields.title || ''} />
+        <Image src={'https:' + node.data.target.fields.file.url} alt={node.data.target.fields.title || ''} />
       ),
     },
   }) : <p>Make Your Request</p>;
@@ -57,10 +58,11 @@ async function fetchPrintData() {
       subtitle: mainGoalSubtext,
       typewriterPhrases: benefitBlock2.typewriterPhrases,
       services: benefitServiceTypes.services,
-      buildingCard: { image: mainGoalImage, title: 'Building', subtitle: 'future' },
+      buildingCard: { image: benefitLowerBlocks[0], title: 'Building', subtitle: 'future' },
       supportCard: { avatar: benefitLowerBlocks[1] || '/placeholder.svg', textImage: benefitLowerBlocks[3] || '/placeholder.svg', title: benefitLowerBlocksText.block2[0]?.headline || 'Reliable 24h Support', subtitle: benefitLowerBlocksText.block2[0]?.des || 'This means just as much to us, reach us anytime' },
       iterationsCard: { image: benefitLowerBlocks[2] || '/placeholder.svg', title: benefitLowerBlocksText.block3[0]?.headline || 'Iterations', subtitle: benefitLowerBlocksText.block3[0]?.des || 'As many needed to achieve excellence' },
     },
+    starIcon: mainGoalImage,
     signature: overflowImage,
   };
 }

@@ -132,13 +132,13 @@ export function RestoExpectation({
                 height={80}
                 className="rounded-full w-16 h-16 sm:w-20 sm:h-20"
               />
-               <div className="text-[#ffffff]">
+               <div className="text-[#ffffff] capitalize">
                  <h3 className="text-xl sm:text-2xl font-semibold">
                    {buildingCard.title}
                  </h3>
                  <span className="flex items-center gap-x-1">
                    <h3 className="text-xl sm:text-2xl font-semibold text-[#ffffff]/70">
-                     for
+                     For
                    </h3>
                    <h3 className="text-xl sm:text-2xl font-semibold">
                      {buildingCard.subtitle}
@@ -176,7 +176,7 @@ export function RestoExpectation({
               />
               <Image
                 src={
-                  supportCard.textImage || "/placeholder.svg?height=80&width=80"
+                  iterationsCard.image || "/placeholder.svg?height=80&width=80"
                 }
                 alt="Communications Support Text"
                 width={80}
@@ -213,8 +213,9 @@ export function RestoExpectation({
 
             <div className="flex items-center justify-center p-0">
               <Image
+                
                 src={
-                  iterationsCard.image || "/placeholder.svg?height=80&width=80"
+                  supportCard.textImage || "/placeholder.svg?height=80&width=80"
                 }
                 alt="Resto Iterations Pulse"
                 width={80}

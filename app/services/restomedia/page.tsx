@@ -2,6 +2,7 @@ import RMedia from "@/blocks/service/rmedia";
 import { getEntry } from "@/lib/contentful";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
+import Image from "next/image";
 
 async function fetchMediaData() {
   const entry = await getEntry('3ig56cyB42oxUDp0sA6kWM');
@@ -35,7 +36,7 @@ async function fetchMediaData() {
   const benefitBlock1 = entry.fields?.benefitBlock1 ? documentToReactComponents(entry.fields.benefitBlock1, {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) => (
-        <img src={'https:' + node.data.target.fields.file.url} alt={node.data.target.fields.title || ''} />
+        <Image src={'https:' + node.data.target.fields.file.url} alt={node.data.target.fields.title || ''} />
       ),
     },
   }) : <p>Make Your Request</p>;
