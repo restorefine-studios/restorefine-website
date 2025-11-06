@@ -166,7 +166,7 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a"> & { icon?: React.ElementType }
 >(({ className, title, children, icon: Icon, ...props }, ref) => {
   return (
-    <li>
+    <li className="w-full bg-black/50 backdrop-blur-md" >
       <NavigationMenuLink asChild>
         <a
           ref={ref}

@@ -126,7 +126,7 @@ function RMerch({ data }: { data: any }) {
 
       <section className="py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {data.overview.features.slice(0,3).map((item: any, index: number) => (
+          {data.services.features.slice(0,3).map((item: any, index: number) => (
             <div
               key={index}
               className="flex flex-col lg:flex-row items-start lg:items-center gap-6"
@@ -135,11 +135,11 @@ function RMerch({ data }: { data: any }) {
                 <h2 className="text-2xl font-medium text-white mb-1">
                   {item.title}
                 </h2>
-                <p className="text-sm text-white/80 leading-relaxed">
-                  {item.description}
-                </p>
+                 <p className="text-sm text-white/80 leading-relaxed">
+                   {item.description}
+                 </p>
               </div>
-              {index !== data.overview.features.slice(0,3).length - 1 && (
+              {index !== data.services.features.slice(0,3).length - 1 && (
                 <div className=" w-full lg:w-px h-px lg:h-full bg-white/30"></div>
               )}
             </div>

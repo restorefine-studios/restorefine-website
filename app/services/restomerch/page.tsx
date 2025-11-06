@@ -14,18 +14,33 @@ async function fetchMerchData() {
 
   const mainServiceTitle = entry.fields?.mainServiceTitle || 'Define Your Merch Identity';
   const mainServiceSubtext = entry.fields?.mainServiceSubtext || 'Shaping merchandise through creative strategy.';
-  const features = [];
-  for (let i = 1; i <= 4; i++) {
-    const service = entry.fields?.[`mainService${i}`];
-    const image = entry.fields?.[`mainService${i}Image`] ? 'https:' + entry.fields[`mainService${i}Image`].fields.file.url : '/placeholder.svg';
-    if (service) {
-      features.push({
+  const merchTypes = entry.fields?.merchTypes || { block1: [], block2: [], block3: [] };
+  const features = [
+    ...merchTypes.block1.map((service: any, index: number) => {
+      const image = entry.fields?.[`mainService${index+1}Image`] ? 'https:' + entry.fields[`mainService${index+1}Image`].fields.file.url : '/placeholder.svg';
+      return {
         title: service.title,
-        description: service.description,
+        description: service.context,
         image,
-      });
-    }
-  }
+      };
+    }),
+    ...merchTypes.block2.map((service: any, index: number) => {
+      const image = entry.fields?.[`mainService${index+2}Image`] ? 'https:' + entry.fields[`mainService${index+2}Image`].fields.file.url : '/placeholder.svg';
+      return {
+        title: service.title,
+        description: service.context,
+        image,
+      };
+    }),
+    ...merchTypes.block3.map((service: any, index: number) => {
+      const image = entry.fields?.[`mainService${index+3}Image`] ? 'https:' + entry.fields[`mainService${index+3}Image`].fields.file.url : '/placeholder.svg';
+      return {
+        title: service.title,
+        description: service.context,
+        image,
+      };
+    }),
+  ];
 
   const mainGoalHeadline = entry.fields?.mainBenefitHeadline  || 'And These Inspiring Benefits Await You';
   const mainGoalSubtext = entry.fields?.mainBenefitSubtext || 'To turn your ideas into impactful solutions';
@@ -52,6 +67,7 @@ async function fetchMerchData() {
   return {
     hero: { titletop: 'Merchandise That', titlebottom: 'Speaks Volumes', description: heroSubtext, image: heroImage[0] },
     overview: { title: mainServiceTitle, subtitle: mainServiceSubtext, features },
+    services:{ title: merchTypes.block1[0]?.title || 'Our Merchandise Types', context: merchTypes.block1[0]?.context, features},
     benefits: { title: mainBenefitHeadline, subtitle: mainBenefitSubtext, makeRequest: benefitBlock1, receiveRefine: <p>Receive and Refine</p> },
     expectation: {
       title: mainGoalHeadline,
