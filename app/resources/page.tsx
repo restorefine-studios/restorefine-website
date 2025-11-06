@@ -30,7 +30,7 @@ interface BlogPost {
 
 async function fetchData() {
   const heroEntry = await getEntry('5njp7CckJ3zMmCpyQ5N8Og');
-  const heroHeadline = heroEntry?.fields?.heroHeadline || 'The First Word \n\nIn What\'s Next';
+  const heroHeadline = heroEntry?.fields?.heroHeadline || 'The First Word In What\'s Next';
   const heroSubtext = heroEntry?.fields?.heroSubtext || 'Like the quiet before a thunderclap — this is where sparks fly for bold brands, standout stories, and digital experiences worth remembering. From kitchens to code, it\'s all on the table.';
   const heroImage = heroEntry?.fields?.heroImage ? 'https:' + heroEntry.fields.heroImage.fields.file.url : '/resourcesbg.png';
 
@@ -76,7 +76,7 @@ export default async function BlogPage() {
           <Image src={heroImage} alt="Background pattern" fill className="object-cover opacity-50" priority />
         </div>
         <div className="relative z-10 container h-full flex flex-col items-start justify-center my-auto mx-auto ">
-           <h1 className="relative z-0 text-left font-medium tracking-tight rservicehero text-4xl md:text-7xl">
+           <h1 className="w-full md:max-w-lg relative z-0 text-left font-medium tracking-tight rservicehero text-4xl md:text-7xl">
           <span className="p-1 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent tracking-tight">
             {heroHeadline}
           </span>

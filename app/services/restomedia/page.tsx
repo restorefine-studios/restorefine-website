@@ -58,7 +58,7 @@ async function fetchMediaData() {
       subtitle: mainGoalSubtext,
       typewriterPhrases: benefitBlock2.typewriterPhrases,
       services: benefitServiceTypes.services,
-      buildingCard: { image: mainGoalImage, title: 'Building', subtitle: 'future' },
+      buildingCard: { image: benefitLowerBlocks[0], title: 'Building', subtitle: 'future' },
       supportCard: { avatar: benefitLowerBlocks[1] || '/placeholder.svg', textImage: benefitLowerBlocks[3] || '/placeholder.svg', title: benefitLowerBlocksText.block2[0]?.headline || 'Reliable 24h Support', subtitle: benefitLowerBlocksText.block2[0]?.des || 'This means just as much to us, reach us anytime' },
       iterationsCard: { image: benefitLowerBlocks[2] || '/placeholder.svg', title: benefitLowerBlocksText.block3[0]?.headline || 'Iterations', subtitle: benefitLowerBlocksText.block3[0]?.des || 'As many needed to achieve excellence' },
     },
