@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "blocks/work/BubbleUi/data.js", "blocks/work/BubbleUi/ChildComponent.js", "blocks/work/BubbleUi/bubble.js", "utils/transform.js"  ],
   "exclude": [
     "node_modules"
   ]
