@@ -141,14 +141,7 @@ export default function Work() {
       )}
 
       {/* Call to action when no work is selected */}
-      {/* {!selectedWork && (
-        <div className="text-center mt-16">
-          <Link href="/portfolio" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-medium transition-colors">
-            View All Projects
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-      )} */}
+  
     </section>
   );
 }
