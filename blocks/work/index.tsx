@@ -6,11 +6,19 @@ import { useState, useRef } from "react";
 import { portfolioItems, PortfolioItem } from "@/lib/portfolio";
 import { ArrowRight, X } from "lucide-react";
 import Bubble from "./BubbleUi/bubble.js";
+import { data } from "./BubbleUi/data.js";
 // import PortfolioHero from "./portfolio_hero";
 
 export default function Work() {
   const [selectedWork, setSelectedWork] = useState<PortfolioItem | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const workSectionRef = useRef<HTMLDivElement>(null);
+
+  // Define categories
+  const categories = ["All", "Branding", "Menus", "Media", "Web & Mobile"];
+
+  // Filter bubbles based on selected category
+  const filteredData = selectedCategory === "All" ? data.map((item) => item.element) : data.filter((item) => item.category === selectedCategory).map((item) => item.element);
 
   // Function to get portfolio items for a specific client
   const getClientWork = (clientName: string) => {
@@ -85,21 +93,34 @@ export default function Work() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-20 px-4 md:px-8 lg:px-16">
+    <section className="w-full bg-black text-white py-20 px-1 md:px-8 lg:px-16">
       {/* Header */}
-      <div className="text-center mt-16 mb-44">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Work</h2>
-        <p className="text-white/70 max-w-2xl mx-auto">Click on any client logo below to view their project details</p>
-      </div>
 
       {/* Interactive Bubble UI Section */}
-      <div className="mt-16">
-        <Bubble onClientSelect={handleClientSelect} />
+      <div className="">
+        <Bubble onClientSelect={handleClientSelect} bubbleData={filteredData} />
+      </div>
+      <div className="-mt-12">
+        <div ref={workSectionRef} className="note text-center text-gray-400 mb-8 opacity-35 ">
+          <p>Click on any client logo below to view their project details</p>
+        </div>
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2.5 rounded-full border transition-all duration-300 ${selectedCategory === category ? "bg-red-600 border-red-600 text-white" : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:border-white/20"}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Selected Work Display */}
       {selectedWork && (
-        <div ref={workSectionRef} className="mt-20 animate-fade-in">
+        <section className="mt-20 animate-fade-in">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h3 className="text-3xl md:text-4xl font-bold mb-2">{selectedWork.title}</h3>
@@ -120,28 +141,27 @@ export default function Work() {
           </div>
 
           {/* Project Images Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {selectedWork.images.map((image, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-xl bg-white/5">
+              <div key={index} className="group relative overflow-hidden bg-white/5">
                 <div className="aspect-video relative">
-                  <Image src={image} alt={`${selectedWork.title} - Image ${index + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <Image src={image} alt={`${selectedWork.title} - Image ${index + 1}`} fill className="object-cover" />
                 </div>
               </div>
             ))}
           </div>
 
           {/* View Full Project Link */}
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Link href={`/portfolio/${selectedWork.id}`} className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-medium transition-colors">
               View Full Project Details
               <ArrowRight className="w-5 h-5" />
             </Link>
-          </div>
-        </div>
+          </div> */}
+        </section>
       )}
 
       {/* Call to action when no work is selected */}
-  
     </section>
   );
 }

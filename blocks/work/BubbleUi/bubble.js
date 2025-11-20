@@ -7,22 +7,55 @@ import Child from "./ChildComponent";
 import { data } from "./data";
 // import "../BubbleUi/";
 
-export default function Bubble({ onClientSelect }) {
+export default function Bubble({ onClientSelect, bubbleData }) {
   const [bubble, setBubble] = useState("");
-  const options = {
-    size: 110,
-    minSize: 25,
-    gutter: 10,
-    provideProps: true,
-    numCols: 5,
-    fringeWidth: 45,
-    yRadius: 150,
-    xRadius: 150,
-    cornerRadius: 60,
-    showGuides: false,
-    compact: true,
-    gravitation: 8,
-  };
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Use bubbleData if provided, otherwise fall back to all data
+  const displayData = bubbleData || data.map((item) => item.element);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Different options for mobile and desktop
+  const options = isMobile
+    ? {
+        size: 105,
+        minSize: 28,
+        gutter: 0,
+        provideProps: false,
+        numCols: 5,
+        fringeWidth: 50,
+        yRadius: 60,
+        xRadius: 60,
+        cornerRadius: 60,
+        showGuides: false,
+        compact: false,
+        gravitation: 8,
+      }
+    : {
+        size: 200,
+        minSize: 45,
+        gutter: 10,
+        provideProps: true,
+        numCols: 5,
+        fringeWidth: 40,
+        yRadius: 190,
+        xRadius: 190,
+        cornerRadius: 60,
+        showGuides: false,
+        compact: false,
+        gravitation: 8,
+      };
 
   useEffect(() => {
     const bubbles = document.querySelector("._2MD0k");
@@ -76,13 +109,13 @@ export default function Bubble({ onClientSelect }) {
     }
   };
 
-  const children = data?.map((data, i) => {
+  const children = displayData?.map((data, i) => {
     return <Child data={data} className="child" key={i} setClick={handleClick} />;
   });
 
   return (
     <>
-      <BubbleUI key={1} options={options} className="myBubbleUI ">
+      <BubbleUI key={1} options={options} className="myBubbleUI lg:mt-4 pb-8 ">
         {children}
       </BubbleUI>
     </>
