@@ -7,6 +7,7 @@ import { CreativePotential } from "./potential";
 import { Reviews } from "./reviews";
 import Cta from "@/components/cta";
 import { getEntry } from "@/lib/contentful";
+import Reels from "./reels";
 
 const defaultModels = [
   {
@@ -122,10 +123,12 @@ async function Resto() {
     };
   });
 
+
   return (
     <main className="">
       <Hero />
       <LogoMarquee logos={clientLogos} />
+      <Reels />
       <BentoGrid headline={serviceTypeHeadline} subtext={serviceTypeSubtext} models={serviceTypeImages} />
       <CreativePotential headline={servicePotentialHeadline} subtext={servicePotentialSubtext} images={potentialImages} />
       {/* <Insights /> */}

@@ -5,16 +5,6 @@ import Image from "next/image";
 import { RestoOverview } from "./resto-services/resto-overview";
 import RestoBenefits from "./resto-services/resto-benefits";
 import { RestoExpectation } from "./resto-services/resto-expectation";
-// import Cta from "@/components/cta";
-import websignature from "@/public/websignature.svg";
-
-
-import globe from "@/public/services/branding/globe.png";
-import pulse from "@/public/services/branding/iterationschart.svg";
-import avatar from "@/public/services/branding/commsavatar.svg";
-import commstext from "@/public/services/branding/commstext.svg";
-
-
 
 
 
@@ -27,14 +17,8 @@ function RWeb({ data }: { data: any }) {
         description={data.hero.description}
       />
 
-      <div className="absolute z-0 top-0 lg:top-0 flex flex-col h-full items-center justify-center opacity-80">
-        <Image
-          src={mesh}
-          alt="mesh"
-          layout="responsive"
-          width={100}
-          height={100}
-        />
+      <div className="px-4 lg:px-0 absolute z-0 bottom-32 lg:top-0 flex flex-col h-full lg:items-center items-baseline justify-end lg:justify-center opacity-100 lg:opacity-80">
+        <Image src={mesh} alt="mesh" layout="responsive" width={100} height={100} />
       </div>
 
       <RestoOverview {...data.overview} />

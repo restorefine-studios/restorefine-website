@@ -15,10 +15,12 @@ export function ContactSection() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setIsSubmitting(true);
     setFormStatus({ type: null, message: "" });
 
     const formData = new FormData(event.currentTarget);
+  
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -37,23 +39,26 @@ export function ContactSection() {
       });
 
       const result = await response.json();
+      
 
-      if (result.success) {
+      if (result.success === true ) {
         setFormStatus({
           type: "success",
           message: "Message sent successfully! We will get back to you soon.",
         });
-        event.currentTarget.reset();
-      } else {
-        throw new Error("Failed to send message");
-      }
+        form.reset();
+      } 
     } catch (error) {
       setFormStatus({
         type: "error",
-        message: "Failed to send message. Please try again.",
+        message: `Failed to send message, due to ${error}. Please try again.`,
       });
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => {
+        setFormStatus({ type: null, message: "" });
+      },5000)
+     
     }
   }
 

@@ -5,11 +5,7 @@ import ring from "@/public/merchring.svg";
 import tri from "@/public/merchangle.svg";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-// import { RestoOverview } from "./resto-services/resto-overview";
 import RestoBenefits from "./resto-services/resto-benefits";
-// import Cta from "@/components/cta";
-import hood from "@/public/merchsignature.svg";
-
 import headlineimg from "@/public/services/merch/pexels-oyindamola-taiwo-346083207-18930893.jpg";
 import stationery from "@/public/services/merch/restorefine_floatingpens.jpg";
 import apron from "@/public/services/merch/HOM-000-024-M-Freebie.jpg";
@@ -22,18 +18,11 @@ const merchring = <Image src={ring} alt="MerchRing" width={150} height={150} />;
 const triangle = <Image src={tri} alt="MerchAngle" width={50} height={50} />;
 
 
-
-// const services = ["Apparel Print", "Stationery Print", "Branding", "Design"];
-
-
-
-
-
 function RMerch({ data }: { data: any }) {
   return (
-    <main className="py-44">
-      <section className="relative z-10 flex flex-col items-center justify-center text-center gap-y-4">
-        <h1 className="relative z-0 mb-6 text-center font-medium tracking-tight text-5xl md:text-7xl">
+    <main className="py-32 lg:py-44">
+      <section className="px-2 lg:px-0 relative z-10 flex flex-col items-start lg:items-center justify-start lg:justify-center text-left lg:text-center gap-y-4">
+        <h1 className="relative z-0 mb-0 lg:mb-6 text-left md:text-center font-medium tracking-tight rservicehero text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
           <span className="py-1.5 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent tracking-tight">
             Finally You Can
             <br />
@@ -41,18 +30,13 @@ function RMerch({ data }: { data: any }) {
           </span>
         </h1>
 
-        <Link
-          href="/enquire-now"
-          className="flex items-center gap-1 mt-1 hover:opacity-90"
-        >
-          <div className="w-auto bg-white text-black text-sm rounded-[24px] px-6 py-3">
-            Lets Craft Something
-          </div>
+        <Link href="/enquire-now" className="flex items-center gap-1 mt-1 hover:opacity-90">
+          <div className="w-auto bg-white text-black text-sm rounded-[24px] px-6 py-3">Lets Craft Something</div>
           <ArrowRight className="flex items-center justify-center bg-[red] text-white rounded-full p-2.5 size-10" />
         </Link>
       </section>
 
-      <section className="pt-12 lg:pt-16 pb-36">
+      <section className="px-2 lg:px-0 pt-6 lg:pt-16 pb-0 lg:pb-32">
         <div className="">
           <div className="mb-8 flex flex-col lg:flex-row items-center justify-between gap-4">
             <p className="text-md w-[350px] text-white leading-relaxed">
@@ -69,55 +53,28 @@ function RMerch({ data }: { data: any }) {
             {/* Left column */}
             <div className="mt-12 grid gap-4">
               <div className="relative h-[200px] bg-[#d9d9d9] rounded-[24px]">
-                <Image
-                  src={stationery}
-                  alt="restomerchstationery"
-                  fill
-                  className="absolute top-0 object-cover w-full rounded-[24px]"
-                />
+                <Image src={stationery} alt="restomerchstationery" fill className="absolute top-0 object-cover w-full rounded-[24px]" />
               </div>
               <div className="relative h-[300px] bg-[#d9d9d9] rounded-[24px]">
-                <Image
-                  src={apron}
-                  alt="restomerchapron"
-                  fill
-                  className="absolute top-0 object-cover w-full rounded-[24px]"
-                />
+                <Image src={apron} alt="restomerchapron" fill className="absolute top-0 object-cover w-full rounded-[24px]" />
               </div>
             </div>
 
             {/* Center column */}
             <div className="relative">
-              <div className="absolute -top-12 z-10 left-1/2 -translate-x-1/2">
-                {star}
-              </div>
+              <div className="absolute -top-12 z-10 left-1/2 -translate-x-1/2">{star}</div>
               <div className="relative z-0 h-[550px] bg-[#d9d9d9] rounded-[24px] ">
-                <Image
-                  src={headlineimg}
-                  alt="restomerchheroimg"
-                  fill
-                  className="absolute top-0 object-cover w-full rounded-[24px]"
-                />
+                <Image src={headlineimg} alt="restomerchheroimg" fill className="absolute top-0 object-cover w-full rounded-[24px]" />
               </div>
             </div>
 
             {/* Right column */}
             <div className="mt-0 lg:mt-12 grid gap-4">
               <div className="relative h-[300px] bg-[#d9d9d9] rounded-[24px]">
-                <Image
-                  src={chestshot}
-                  alt="restomerchprint-tshirt"
-                  fill
-                  className="absolute top-0 object-cover w-full rounded-[24px]"
-                />
+                <Image src={chestshot} alt="restomerchprint-tshirt" fill className="absolute top-0 object-cover w-full rounded-[24px]" />
               </div>
               <div className="relative h-[200px] bg-[#d9d9d9] rounded-[24px]">
-                <Image
-                  src={cards}
-                  alt="restomerchstationerycards"
-                  fill
-                  className="absolute top-0 object-cover w-full rounded-[24px]"
-                />
+                <Image src={cards} alt="restomerchstationerycards" fill className="absolute top-0 object-cover w-full rounded-[24px]" />
               </div>
             </div>
           </div>

@@ -30,18 +30,14 @@ export default function ServiceTypes({ headline, subtext, subServices, serviceDe
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 1 >= services.length ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex + 1 >= services.length ? 0 : prevIndex + 1));
     setTimeout(() => setIsTransitioning(false), 500); // Match this with the CSS transition duration
   };
 
   const prevSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? services.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? services.length - 1 : prevIndex - 1));
     setTimeout(() => setIsTransitioning(false), 500); // Match this with the CSS transition duration
   };
 
@@ -111,28 +107,15 @@ export default function ServiceTypes({ headline, subtext, subServices, serviceDe
             <Link
               key={`${service.title}-${index}`}
               href={service.href}
-              className={`${
-                isMobile ? "flex-none w-[80vw]" : ""
-              } bg-[#d9d9d9] rounded-[24px] overflow-hidden relative transition-transform duration-500 ease-in-out ${
-                isTransitioning ? "transform translate-x-full" : ""
-              }`}
+              className={`${isMobile ? "flex-none w-[80vw]" : ""} bg-[#d9d9d9] rounded-[24px] overflow-hidden relative transition-transform duration-500 ease-in-out ${isTransitioning ? "transform translate-x-full" : ""}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="absolute z-10 p-6 space-y-1">
-                <p className="text-xs font-medium text-white">
-                  {service.title}
-                </p>
-                <h2 className="text-xl font-semibold block text-white">
-                  {service.description}
-                </h2>
+                <p className="text-xs font-medium text-white">{service.title}</p>
+                <h2 className="text-xl font-semibold block text-white">{service.description}</h2>
               </div>
               <div className="h-[550px] border-t border-t-black/80 relative">
-                <Image
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  fill
-                  className="absolute z-0 right-0 w-full object-cover grayscale-none md:grayscale scale-100 hover:scale-110 hover:grayscale-0 duration-700 ease-in-out transition-all cursor-pointer"
-                />
+                <Image src={service.image || "/placeholder.svg"} alt={service.title} fill className="absolute z-0 right-0 w-full object-cover grayscale-none md:grayscale scale-100 hover:scale-110 hover:grayscale-0 duration-700 ease-in-out transition-all cursor-pointer" />
               </div>
             </Link>
           ))}
@@ -140,18 +123,10 @@ export default function ServiceTypes({ headline, subtext, subServices, serviceDe
 
         {!isMobile && services.length > 3 && (
           <div className="flex justify-end gap-4">
-            <button
-              onClick={prevSlide}
-              className="p-4 rounded-full bg-[#303030] text-white hover:bg-[#404040] transition-colors"
-              disabled={isTransitioning}
-            >
+            <button onClick={prevSlide} className="p-4 rounded-full bg-[#303030] text-white hover:bg-[#404040] transition-colors" disabled={isTransitioning}>
               <ArrowRight className="w-6 h-6 rotate-180" />
             </button>
-            <button
-              onClick={nextSlide}
-              className="p-4 rounded-full bg-[#ff0000] text-white hover:bg-[#ff0000]/90 transition-colors"
-              disabled={isTransitioning}
-            >
+            <button onClick={nextSlide} className="p-4 rounded-full bg-[#ff0000] text-white hover:bg-[#ff0000]/90 transition-colors" disabled={isTransitioning}>
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
@@ -162,13 +137,9 @@ export default function ServiceTypes({ headline, subtext, subServices, serviceDe
         {serviceDetails.map((service: any, index: number) => (
           <div key={service.number} className="relative">
             <div className="grid md:grid-cols-[100px_1fr] gap-4">
-              <div className="text-4xl font-semibold text-[red]">
-                {service.number}
-              </div>
+              <div className="text-4xl font-semibold text-[red]">{service.number}</div>
               <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-white">
-                  {service.title}
-                </h3>
+                <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
                 <p className="text-sm text-white/80">{service.description}</p>
                 <div className="flex flex-wrap gap-4">
                   {service.services.map((item: string) => (
@@ -182,9 +153,7 @@ export default function ServiceTypes({ headline, subtext, subServices, serviceDe
                 </div>
               </div>
             </div>
-            {index < serviceDetails.length - 1 && (
-              <div className="absolute -bottom-8 left-0 right-0 h-px bg-white/30" />
-            )}
+            {index < serviceDetails.length - 1 && <div className="absolute -bottom-8 left-0 right-0 h-px bg-white/30" />}
           </div>
         ))}
       </div>

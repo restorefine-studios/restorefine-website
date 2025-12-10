@@ -75,11 +75,7 @@ export function Reviews({ reviews, headline, subtext }: ReviewsProps) {
           <div
             ref={scrollRef}
             className={`
-              ${
-                isMobile
-                  ? "flex overflow-x-auto scrollbar-hide"
-                  : "grid grid-cols-1 md:grid-cols-2"
-              } 
+              ${isMobile ? "flex overflow-x-auto scrollbar-hide" : "grid grid-cols-1 md:grid-cols-2"} 
               gap-6
             `}
           >
@@ -96,28 +92,15 @@ export function Reviews({ reviews, headline, subtext }: ReviewsProps) {
                   <div className="relative w-12 h-12">
                     {/* Client Image */}
                     <div className="absolute inset-0 rounded-full bg-[#d9d9d9] flex items-center justify-center">
-                      <Image
-                        src={review.companyLogo || ""}
-                        alt={""}
-                        fill
-                        className="rounded-full object-cover w-full"
-                      />
+                      <Image src={review.companyLogo || ""} alt={""} fill className="rounded-full object-cover w-full" />
                     </div>
                     {/* Company Logo - positioned to overlap */}
                     <div className="absolute inset-0 translate-x-4 rounded-full bg-white flex items-center justify-center">
-                      <Image
-                        src={review.image || ""}
-                        alt={""}
-                       width={25}
-                       height={25}
-                        className="object-contain"
-                      />
+                      <Image src={review.image || ""} alt={""} width={25} height={25} className="object-contain" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-white">
-                      {review.name}
-                    </h3>
+                    <h3 className="text-lg font-medium text-white">{review.name}</h3>
                     <p className="text-sm text-white/60">{review.position}</p>
                   </div>
                 </div>
@@ -130,26 +113,13 @@ export function Reviews({ reviews, headline, subtext }: ReviewsProps) {
           {/* Navigation */}
           {showArrows && (
             <div className="mt-8 flex justify-end gap-2">
-              <button
-                onClick={handlePrevious}
-                disabled={currentIndex === 0}
-                className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${
-                  currentIndex === 0
-                    ? "bg-[#2b2b2b] cursor-not-allowed"
-                    : "bg-[#2b2b2b] hover:bg-[#3b3b3b]"
-                }`}
-                aria-label="Previous review"
-              >
+              <button onClick={handlePrevious} disabled={currentIndex === 0} className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${currentIndex === 0 ? "bg-[#2b2b2b] cursor-not-allowed" : "bg-[#2b2b2b] hover:bg-[#3b3b3b]"}`} aria-label="Previous review">
                 <ArrowRight className="h-5 w-5 rotate-180 text-white" />
               </button>
               <button
                 onClick={handleNext}
                 disabled={currentIndex >= reviews.length - 2}
-                className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${
-                  currentIndex >= reviews.length - 2
-                    ? "bg-[#2b2b2b] cursor-not-allowed"
-                    : "bg-red-600 hover:bg-red-700"
-                }`}
+                className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${currentIndex >= reviews.length - 2 ? "bg-[#2b2b2b] cursor-not-allowed" : "bg-red-600 hover:bg-red-700"}`}
                 aria-label="Next review"
               >
                 <ArrowRight className="h-5 w-5 text-white" />

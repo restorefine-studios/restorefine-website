@@ -64,9 +64,9 @@ async function fetchData() {
 export default async function BlogPage() {
   const { heroHeadline, heroSubtext, heroImage, posts } = await fetchData();
   // Featured posts (first 2)
-  const featuredPosts = posts.slice(0, 2)
+  const featuredPosts = blogPosts.slice(0, 2);
   // Regular posts (rest)
-  const regularPosts = posts.slice(2)
+  const regularPosts = blogPosts.slice(2);
 
   return (
     <main className="">
@@ -120,13 +120,7 @@ export default async function BlogPage() {
                   <h3 className="text-xl font-medium text-white mb-3">{post.title}</h3>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-[#d9d9d9]">
-                      <Image
-                        src={post.authorImage || "/placeholder.svg"}
-                        alt={post.author}
-                        width={40}
-                        height={40}
-                        className="object-cover"
-                      />
+                      <Image src={post.authorImage || "/placeholder.svg"} alt={post.author} width={40} height={40} className="object-cover" />
                     </div>
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
@@ -159,13 +153,7 @@ export default async function BlogPage() {
                   <h3 className="text-lg font-medium text-white mb-3">{post.title}</h3>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-[#d9d9d9]">
-                      <Image
-                        src={post.authorImage || "/placeholder.svg"}
-                        alt={post.author}
-                        width={50}
-                        height={50}
-                        className="object-cover"
-                      />
+                      <Image src={post.authorImage || "/placeholder.svg"} alt={post.author} width={50} height={50} className="object-cover" />
                     </div>
                     <div className="flex items-center text-[#999999] text-sm">
                       <span>{post.author}</span>
@@ -180,5 +168,5 @@ export default async function BlogPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }

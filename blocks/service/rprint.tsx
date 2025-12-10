@@ -1,22 +1,9 @@
-import React from "react";
-import ball from "@/public/rbrandingheroball.svg";
-import baloon from "@/public/rbrandingherobaloon.svg";
 import Image from "next/image";
 import RestoServicesHero from "./resto-services/resto-hero";
 import { RestoOverview } from "./resto-services/resto-overview";
-
 import RestoBenefits from "./resto-services/resto-benefits";
 import { RestoExpectation } from "./resto-services/resto-expectation";
-import money from "@/public/moneystartgraphic.svg";
 import printsketch from "@/public/printherobg.svg";
-
-import globe from "@/public/services/branding/globe.png";
-import pulse from "@/public/services/branding/iterationschart.svg";
-import avatar from "@/public/services/branding/commsavatar.svg";
-import commstext from "@/public/services/branding/commstext.svg";
-
-
-
 
 function RPrint({ data }: { data: any }) {
   return (
@@ -34,6 +21,7 @@ function RPrint({ data }: { data: any }) {
           fill
           className="h-full object-none animate-pulse"
         />
+        
       </div>
       <section className="pt-16 lg:pt-32">
         <RestoOverview {...data.overview} />
@@ -65,6 +53,7 @@ function RPrint({ data }: { data: any }) {
           services={data.expectation.services}
         />
 
+        {/* Signature marquee at the bottom for both desktop and mobile */}
         <section className="absolute inset-x-0 flex w-full overflow-x-hidden bg-transparent py-0 gap-x-4">
           <div className="animate-marquee-infinite flex min-w-full shrink-0 items-center justify-around gap-0">
             <Image

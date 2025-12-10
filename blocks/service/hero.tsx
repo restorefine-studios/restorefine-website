@@ -12,7 +12,7 @@ interface ServicesHeroProps {
 function ServicesHero({ headline, subtext, image, marquee }: ServicesHeroProps) {
   return (
     <main className="min-h-screen overflow-hidden pt-12">
-      <section className="px-4 md:px-0 py-16 md:py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-between">
+      <section className="px-0 py-16 md:py-24 lg:py-32 flex flex-col lg:flex-row items-center justify-between">
         <div className="w-full lg:w-1/2 text-left flex flex-col items-start gap-y-4 mb-8 lg:mb-0">
            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
              <span className="inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">

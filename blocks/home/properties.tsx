@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 interface Models {
-  id: number,
-  source: string,
-  alt: string,
-  width: number,
-  height: number,
-  className: string
+  id: number;
+  source: string;
+  alt: string;
+  width: number;
+  height: number;
+  className: string;
 }
 
 interface BentoGridProps {
@@ -38,16 +38,8 @@ export function BentoGrid({ headline, subtext, models }: BentoGridProps) {
               className={` ${item.id === 2 ? "flex flex-col items-end justify-end pl-4 pt-4 md:pl-0 md:pt-0" : "grid place-items-center p-4 md:p-0"}
               aspect-[4/3] rounded-[24px] bg-[#131313] relative overflow-hidden`}
             >
-              <Image
-                src={item.source}
-                alt={item.alt}
-                width={item.width}
-                height={item.height}
-                className={item.className}
-              />
-              <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-300 bg-black/60 flex items-center justify-center text-white text-sm font-medium text-center p-4">
-                {item.alt}
-              </div>
+              <Image src={item.source} alt={item.alt} width={item.width} height={item.height} className={item.className} />
+              <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-300 bg-black/60 flex items-center justify-center text-white text-sm font-medium text-center p-4">{item.alt}</div>
             </div>
           ))}
         </div>

@@ -5,16 +5,9 @@ import Image from "next/image";
 import RestoServicesHero from "./resto-services/resto-hero";
 import { RestoOverview } from "./resto-services/resto-overview";
 // import Cta from "@/components/cta";
-
 import RestoBenefits from "./resto-services/resto-benefits";
 import { RestoExpectation } from "./resto-services/resto-expectation";
-import money from "@/public/moneystartgraphic.svg";
-
 import artefacts from "@/public/services/branding/rbrandinghomemobile.svg";
-import globe from "@/public/services/branding/globe.png";
-import pulse from "@/public/services/branding/iterationschart.svg";
-import avatar from "@/public/services/branding/commsavatar.svg";
-import commstext from "@/public/services/branding/commstext.svg";
 
 
 
@@ -39,8 +32,8 @@ function RBranding({ data }: { data: any }) {
             <Image src={ball} alt="ball" width={150} height={150} />
           </div>
         </div>
-        <div className="flex items-center justify-center lg:hidden">
-          <Image src={artefacts} alt="artefacts" width={300} height={300} />
+        <div className="py-8 flex items-center justify-center lg:hidden">
+          <Image src={artefacts} alt="artefacts" width={270} height={270} />
         </div>
       </section>
 
