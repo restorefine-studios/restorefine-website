@@ -25,13 +25,14 @@ export default function Hero() {
       </Link>
 
       {/* Heading */}
-      <h1 className="relative z-10 mb-6 text-center font-medium tracking-tight text-4xl md:text-6xl lg:text-7xl max-w-5xl">
-        <span className="inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">Portfolio</span>
-        <br />
-        <span className="inline-block bg-gradient-to-b from-slate-50 via-red-700 to-red-900 bg-clip-text text-transparent">Hospitality Success</span>
-        <br />
-
-        <span className="inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">Beyond Digital</span>
+      <h1 className="relative z-0 mb-6 text-center font-medium tracking-tight text-5xl md:text-7xl">
+        <span className="p-1.5 inline-block bg-gradient-to-b from-white to-[#6D6C6D] bg-clip-text text-transparent">
+          Your Partner in
+          <br />
+          Hospitality Success,
+          <br />
+          Beyond Digital
+        </span>
       </h1>
       {/* Description */}
       <p className="mx-auto mb-12 max-w-3xl font-normal text-white/80">Running a restaurant, café, or takeaway is tough. We make it easier. From websites that drive bookings to menus, signage, and merch, we’ve got you covered. Let’s elevate your business together.</p>

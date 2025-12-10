@@ -43,7 +43,7 @@ export function LogoMarquee() {
         ></div>
         <div
           aria-hidden="true"
-          className="-top-1 left-1/2 h-[200px] w-full max-w-[200px] md:max-w-[400px] center pointer-events-none absolute max-w-full -translate-x-1/2 -translate-y-1/2"
+          className="-top-1 left-1/2 h-[200px] w-full md:max-w-[400px] center pointer-events-none absolute max-w-full -translate-x-1/2 -translate-y-1/2"
           style={{
             background:
               "conic-gradient(from 90deg, rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 50%), radial-gradient(rgba(200, 200, 200, 0.1) 0%, transparent 80%)",

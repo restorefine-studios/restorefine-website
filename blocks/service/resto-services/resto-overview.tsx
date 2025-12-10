@@ -101,7 +101,7 @@ export function RestoOverview({
                     <h3 className="text-xl font-semibold text-[#ffffff] mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-[#ffffff]/80 md:truncate sm:overflow-visible sm:whitespace-normal sm:overflow-auto hover:overflow-visible hover:whitespace-normal hover:overflow-auto cursor-pointer transition-transform duration-500 ease-in-out">
+                    <p className="text-sm text-[#ffffff]/80 md:truncate sm:whitespace-normal sm:overflow-auto hover:whitespace-normal hover:overflow-auto cursor-pointer transition-transform duration-500 ease-in-out">
                       {feature.description}
                     </p>
                   </div>
