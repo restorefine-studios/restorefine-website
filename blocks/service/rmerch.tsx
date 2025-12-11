@@ -6,11 +6,11 @@ import tri from "@/public/merchangle.svg";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import RestoBenefits from "./resto-services/resto-benefits";
-import headlineimg from "@/public/services/merch/pexels-oyindamola-taiwo-346083207-18930893.jpg";
-import stationery from "@/public/services/merch/restorefine_floatingpens.jpg";
-import apron from "@/public/services/merch/HOM-000-024-M-Freebie.jpg";
-import chestshot from "@/public/services/merch/pexels-skgphotography-22617996.jpg";
-import cards from "@/public/services/merch/restorefine_thankyoucard.jpg";
+import headlineimg from "@/public/services/merch/pexels-oyindamola-taiwo-346083207-18930893.webp";
+import stationery from "@/public/services/merch/restorefine_floatingpens.webp";
+import apron from "@/public/services/merch/HOM-000-024-M-Freebie.webp";
+import chestshot from "@/public/services/merch/pexels-skgphotography-22617996.webp";
+import cards from "@/public/services/merch/restorefine_thankyoucard.webp";
 import { RestoExpectation } from "./resto-services/resto-expectation";
 
 const star = <Image src={restostar} alt="RestoStar" width={100} height={100} />;

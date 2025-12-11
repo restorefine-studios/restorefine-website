@@ -8,7 +8,7 @@ import ctabg from "@/public/rmediactabg.webp";
 import { RestoOverview } from "./resto-services/resto-overview";
 
 
-import bio from "@/public/services/media/restomediabio.jpg";
+import bio from "@/public/services/media/restomediabio.webp";
 import { RestoExpectation } from "./resto-services/resto-expectation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
