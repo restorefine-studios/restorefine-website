@@ -14,7 +14,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "our-story-behind-100k-prints",
+    slug: "our-story-behind-200k-prints",
     title: "Our Story Behind 100K Prints",
     subtitle: "",
     thumbnail: "/blogmesh.svg?height=100&width=100",
