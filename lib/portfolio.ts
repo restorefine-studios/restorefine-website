@@ -54,5 +54,17 @@ export const portfolioItems: PortfolioItem[] = [
     date: "2024-01-15",
     category: "Branding",
   },
+  {
+    id: "big-bites",
+    title: "Big Bites",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    thumbnail: "/clients/big-bites-logo.webp",
+    images: [
+      "/work/bigbites/Artboard 2@4x.webp",
+      "/work/bigbites/Artboard 1@4x.webp",
+    ],
+    date: "2024-01-15",
+    category: "Menus",
+  },
 ]
 

@@ -5,8 +5,8 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { portfolioItems, PortfolioItem } from "@/lib/portfolio";
 import { ArrowRight, X } from "lucide-react";
-import Bubble from "./BubbleUi/bubble.js";
-import { data } from "./BubbleUi/data.js";
+import Bubble from "./BubbleUi/bubble";
+import { data } from "./BubbleUi/data";
 // import PortfolioHero from "./portfolio_hero";
 
 export default function Work() {
@@ -141,11 +141,11 @@ export default function Work() {
           </div>
 
           {/* Project Images Gallery */}
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-0">
             {selectedWork.images.map((image, index) => (
-              <div key={index} className="group relative overflow-hidden bg-white/5">
+              <div key={index} className="group relative overflow-hidden">
                 <div className="aspect-video relative">
-                  <Image src={image} alt={`${selectedWork.title} - Image ${index + 1}`} fill className="object-cover" />
+                  <Image src={image} alt={`${selectedWork.title} - Image ${index + 1}`} fill className="object-contain" />
                 </div>
               </div>
             ))}
